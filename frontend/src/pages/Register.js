@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";   // ✅ ADD THIS
+import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 
 const Register = () => {
@@ -7,10 +7,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const Component = () => {
-  const navigate = useNavigate(); // ✅ correct
-}
-
+  const navigate = useNavigate(); // ✅ MUST be inside component
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -23,7 +20,7 @@ const Register = () => {
       });
 
       alert("Registration successful");
-      navigate("/login");   // ✅ USE THIS
+      navigate("/login"); // ✅ correct navigation
     } catch (error) {
       alert(error.response?.data?.message || "Register failed");
     }
