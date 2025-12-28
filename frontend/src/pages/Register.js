@@ -1,10 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";   // ✅ ADD THIS
 import API from "../services/api";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const Component = () => {
+  const navigate = useNavigate(); // ✅ correct
+}
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -17,9 +23,8 @@ const Register = () => {
       });
 
       alert("Registration successful");
-      window.location.href = "/login";
+      navigate("/login");   // ✅ USE THIS
     } catch (error) {
-      console.log("REGISTER ERROR:", error.response?.data);
       alert(error.response?.data?.message || "Register failed");
     }
   };

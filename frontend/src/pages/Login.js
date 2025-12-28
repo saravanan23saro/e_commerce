@@ -1,9 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";   // ✅ ADD
 import API from "../services/api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const Component = () => {
+  const navigate = useNavigate(); // ✅ correct
+}
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -16,9 +22,8 @@ const Login = () => {
 
       localStorage.setItem("userInfo", JSON.stringify(data));
       alert("Login successful");
-      window.location.href = "/";
+      navigate("/");   // ✅ HOME
     } catch (error) {
-      console.log("LOGIN ERROR:", error.response?.data);
       alert(error.response?.data?.message || "Login failed");
     }
   };
